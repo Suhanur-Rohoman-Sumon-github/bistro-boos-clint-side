@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaCartArrowDown } from "react-icons/fa";
 
 const Navbar = () => {
     const navItem = <>
         <li><Link to={'/'}>Home</Link></li>
-        <li><Link to={'/menu'}>CONTACT us</Link></li>
+        <li><Link to={'/contact'}>CONTACT us</Link></li>
         <li><Link to={'/menu'}>DASHBOARD</Link></li>
         <li><Link to={'/menu'}>Our Menu</Link></li>
-        <li><Link to={'/menu'}>Our Shop</Link></li>
+        <li><Link to={'/shop'}>Our Shop</Link></li>
+        <li><Link to={'/shop'}> <FaCartArrowDown/> </Link></li>
     </>
     return (
         <div className="navbar bg-black bg-opacity-25 w-11/12 text-white fixed z-10">

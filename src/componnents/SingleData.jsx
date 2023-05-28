@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './button/Button';
 
 const SingleData = ({item}) => {
     const {name,recipe,image,price} = item
@@ -12,6 +13,9 @@ const SingleData = ({item}) => {
                 <p className='ml-32 text-yellow-500'>${price}</p>
                 </div>
                 <p >{recipe}</p>
+            </div>
+            <div>
+            
             </div>
         </div>
         </>
