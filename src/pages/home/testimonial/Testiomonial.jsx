@@ -15,7 +15,7 @@ import { FaUserSecret } from "react-icons/fa";
 const Testiomonial = () => {
     const [revews ,setRebews] = useState([])
     useEffect(()=>{
-        fetch('revew.json')
+        fetch('http://localhost:5000/testimonial')
         .then(res=>res.json())
         .then(data=>setRebews(data))
     },[])

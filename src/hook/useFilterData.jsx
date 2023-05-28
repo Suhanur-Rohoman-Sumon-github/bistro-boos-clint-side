@@ -7,7 +7,7 @@ const useFilterData = (catagory) => {
    useEffect(()=>{
     const filterdata = menuData.filter(menu=>menu.category === catagory)
     setFilterdatas(filterdata)
-   },[])
+   },[menuData])
    return filterdatas
 };
 
