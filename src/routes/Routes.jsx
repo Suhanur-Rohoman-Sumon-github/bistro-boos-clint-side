@@ -5,6 +5,8 @@ import Home from "../pages/home/home/Home";
 import Menu from "../pages/menu/Menu";
 import Order from "../pages/Order/Order";
 import ContactUs from "../pages/ContactUs/ContactUs";
+import Login from "../pages/Login-and-Sinup/Login";
+import Sinup from "../pages/Login-and-Sinup/Sinup";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
             {
                 path:'/contact',
                 element:<ContactUs/>
+            },
+            {
+                path:'/login',
+                element:<Login />
+            },
+            {
+                path:'/sinup',
+                element:<Sinup />
             }
            
         ]

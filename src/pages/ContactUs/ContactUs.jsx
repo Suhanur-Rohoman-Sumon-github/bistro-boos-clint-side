@@ -42,9 +42,7 @@ const ContactUs = () => {
             <TextHeader header='CONTACT FORM' subHeader='---Send Us a Message---'></TextHeader>
             <div className='bg-slate-400 py-36 px-4'>
                 <div className=' flex '>
-                    <label >name</label>
                 <input type="text" placeholder="Type here" className="input input-bordered input-warning w-full mr-3" />
-                <label >name</label>
                 <input type="text" placeholder="Type here" className="input input-bordered input-warning w-full mr-3" />
                 </div>
                 <label >phone</label>

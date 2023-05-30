@@ -1,13 +1,15 @@
 import React from 'react';
 import Navbar from '../pages/shered/navbar/Navbar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Footer from '../pages/shered/footer/Footer';
 
 const Main = () => {
+    const location = useLocation()
+    const noNavbarandFooter = location.pathname.includes('/login') || location.pathname.includes('/sinup')
     return (
         <div>
             {/* navbar start */}
-            <Navbar />
+            {noNavbarandFooter || <Navbar />}
              {/* navbar end */}
              
             {/* outlet start*/}
@@ -15,7 +17,7 @@ const Main = () => {
              {/* outlet end*/}
 
             {/* footer start */}
-            <Footer/>
+           {noNavbarandFooter || <Footer/>}
             {/* footer end */}
         </div>
     );
