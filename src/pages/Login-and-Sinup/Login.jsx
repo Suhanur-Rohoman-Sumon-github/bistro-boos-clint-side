@@ -1,23 +1,24 @@
 import React, { useEffect, useState, useContext } from 'react';
 import img from '../../assets/others/authentication.gif'
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import { FaGoogle } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { Authcontext } from '../../provider/AuthProvider';
+import HandleGoogleSinin from '../../componnents/hndle-Google-SInup-And-Sin-in/HandleGoogleSinin';
 
 const Login = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [dasbaled, setDisabled] = useState(true)
     const [error, setError] = useState(null);
     const { handleLogin } = useContext(Authcontext);
+    const navigat = useNavigate()
     const onSubmit = data => {
         const { email, password } = data
         const emails = email;
         const passowords = password;
         handleLogin(emails,passowords)
         .then(result=>{
-            console.log(result.user)
+            navigat('/')
         })
         .catch(err=>{
          console.error(err)
@@ -71,9 +72,7 @@ const Login = () => {
                         <p className='text-center'>New here? </p>  <Link to={'/sinup'}><button className="btn btn-link text-yellow-500 "> Create a New Account</button></Link>
                     </div>
                     <div className="divider">OR sin in with</div>
-                    <button className="btn btn-circle btn-outline mx-auto bg-yellow-500 text-white">
-                        <FaGoogle />
-                    </button>
+                   <HandleGoogleSinin />
                 </div>
                 <div className="text-center mr-16 lg:text-left shadow-xl">
                     <img src={img} className='w-full ' alt="" />

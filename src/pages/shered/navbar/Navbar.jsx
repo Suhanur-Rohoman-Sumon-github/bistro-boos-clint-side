@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaCartArrowDown } from "react-icons/fa";
+import { Authcontext } from '../../../provider/AuthProvider';
+import useCarts from '../../../hook/useCarts';
 
 const Navbar = () => {
+    const { user, handleLogout } = useContext(Authcontext)
+    const [data] = useCarts()
     const navItem = <>
         <li><Link to={'/'}>Home</Link></li>
         <li><Link to={'/contact'}>CONTACT us</Link></li>
         <li><Link to={'/menu'}>DASHBOARD</Link></li>
         <li><Link to={'/menu'}>Our Menu</Link></li>
         <li><Link to={'/shop'}>Our Shop</Link></li>
-        <li><Link to={'/shop'}> <FaCartArrowDown/> </Link></li>
+
     </>
+    const handleSinout = () => {
+        handleLogout()
+            .then(() => { })
+            .catch(error => console.log(error));
+    }
     return (
         <div className="navbar bg-black bg-opacity-25 w-11/12 text-white fixed z-10">
             <div className="navbar-start">
@@ -26,11 +35,16 @@ const Navbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                {navItem}
+                    {navItem}
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to={'/login'}><button className='btn btn-warning text-white'>login</button></Link>
+                {user && <li><Link to={'/dashbord/mycart'}> <button className="btn btn-outline btn-warning text-white mr-4 gap-2">
+                    <FaCartArrowDown />
+                    <div className="badge badge-secondary">{data?data.length : 0}</div>
+                </button> </Link></li>}
+                {!user && <Link to={'/login'}><button className='btn btn-warning text-white'>login</button></Link>}
+                {user && <Link to={'/'}><button onClick={handleSinout} className='btn btn-warning text-white'>logout</button></Link>}
             </div>
         </div>
     );

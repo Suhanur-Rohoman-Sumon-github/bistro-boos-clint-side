@@ -1,27 +1,50 @@
 import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import img from '../../assets/others/authentication.gif'
 import { useForm } from "react-hook-form";
 import { Authcontext } from '../../provider/AuthProvider';
+import HandleGoogleSinin from '../../componnents/hndle-Google-SInup-And-Sin-in/HandleGoogleSinin';
 
 
 const Sinup = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const { handleSinup } = useContext(Authcontext);
+    const { handleSinup,updateUserProfile } = useContext(Authcontext);
+    const navigat = useNavigate()
     const onSubmit = data => {
         const { email, name, photo, password } = data
         const emails = email
         const names = name
         const photoUrl = photo
         const passowords = password
+        const users = {
+            emails,names,rule:'user'
+        }
         handleSinup(emails, passowords)
             .then(result => {
                 console.log(result.user)
+                updateUserProfile(names,photoUrl)
+                .then(res=>{
+                    fetch('http://localhost:5000/users',{
+                        method:'POST',
+                        headers:{
+                            'content-type':'application/json'
+                        },
+                        body:JSON.stringify(users)
+                    })
+                    .then(res=>res.json())
+                    .then(data=>{
+                        console.log(data)
+                    })
+                    navigat('/')
+                })
+                .catch(err=>console.error(err))
             })
             .catch(err => console.error(err))
 
     };
+    
+  
     return (
         <div>
             <div className="hero min-h-screen bg-base-200 ">
@@ -74,9 +97,7 @@ const Sinup = () => {
                             <p className='text-center'>Already registered?</p><Link to={'/login'}><button className="btn btn-link text-yellow-500 "> Go to log in</button></Link>
                         </div>
                         <div className="divider">OR sinup with</div>
-                        <button className="btn btn-circle btn-outline mx-auto bg-yellow-500 text-white">
-                            <FaGoogle />
-                        </button>
+                       <HandleGoogleSinin />
                     </div>
                     <div className="text-center mr-16 lg:text-left shadow-xl">
                         <img src={img} className='w-full ' alt="" />

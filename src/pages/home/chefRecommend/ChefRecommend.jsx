@@ -6,9 +6,9 @@ import SingleChefRecomented from './SingleChefRecomented';
 const ChefRecommend = () => {
     const popular = useFilterData('popular')
     return (
-        <div>
+        <div >
             <TextHeader header='CHEF RECOMMENDS' subHeader='---Should Try---'></TextHeader>
-            <div className='grid md:grid-cols-3 gap-3'>
+            <div className='grid md:grid-cols-3 gap-8'>
                 {
                     popular.map(item => <SingleChefRecomented
                         key={item._id}

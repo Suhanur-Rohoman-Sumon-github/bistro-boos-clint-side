@@ -7,7 +7,7 @@ const Main = () => {
     const location = useLocation()
     const noNavbarandFooter = location.pathname.includes('/login') || location.pathname.includes('/sinup')
     return (
-        <div>
+        <div className='w-11/12 mx-auto'>
             {/* navbar start */}
             {noNavbarandFooter || <Navbar />}
              {/* navbar end */}
